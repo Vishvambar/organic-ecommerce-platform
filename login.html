@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="module" src="firebase-init.js"></script>
+    <script type="module" src="login.js"></script>
+
+    <title>Organic Products - Login & Sign Up</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f3f4ed;
+            background-image: url('2305.i309.029.S.m004.c13.vegetables realistic composition on dark background.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            height: 100vh;
+            color: #333;
+        }
+
+        .container {
+            position: absolute;
+            right: 50%;
+            top: 27%;
+        }
+
+        .form-box {
+            background: #eff5d7;
+            border-radius: 10px;
+            margin-left: 5%;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 400px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .form-box h2 {
+            margin-bottom: 20px;
+            color: #4caf50;
+        }
+
+        .form-box form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-box input[type="text"],
+        .form-box input[type="email"],
+        .form-box input[type="password"] {
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .form-box button {
+            padding: 10px;
+            background-color: #4caf50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .form-box button:hover {
+            background-color: #45a049;
+        }
+
+        .form-box .switch {
+            margin-top: 15px;
+        }
+
+        .form-box .switch a {
+            color: #4caf50;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .form-box .switch a:hover {
+            text-decoration: underline;
+        }
+
+        .header {
+            color: white;
+        }
+
+        /* Login Success Animation */
+        .login-success-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            visibility: hidden;
+            opacity: 0;
+            transition: opacity 0.5s, visibility 0.5s;
+            z-index: 1000;
+        }
+
+        .login-success-animation.active {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        .success-message {
+            text-align: center;
+            color: #fff;
+        }
+
+        .success-message h2 {
+            margin-top: 20px;
+            font-size: 24px;
+            color: #00ff7f;
+        }
+
+        /* Checkmark Animation */
+        .checkmark {
+            width: 80px;
+            height: 80px;
+            position: relative;
+            margin: 0 auto;
+        }
+
+        .checkmark-circle {
+            width: 80px;
+            height: 80px;
+            background-color: transparent;
+            border: 4px solid #00ff7f;
+            border-radius: 50%;
+            animation: circle-animation 0.5s ease-out forwards;
+        }
+
+        .checkmark-stem {
+            position: absolute;
+            width: 4px;
+            height: 30px;
+            background-color: #00ff7f;
+            top: 40%;
+            left: 50%;
+            transform: rotate(45deg);
+            transform-origin: bottom left;
+            animation: stem-animation 0.3s 0.5s ease-out forwards;
+            opacity: 0;
+        }
+
+        .checkmark-kick {
+            position: absolute;
+            width: 4px;
+            height: 15px;
+            background-color: #00ff7f;
+            top: 60%;
+            left: 51%;
+            transform: rotate(-45deg);
+            transform-origin: bottom left;
+            animation: kick-animation 0.3s 0.8s ease-out forwards;
+            opacity: 0;
+        }
+
+        @keyframes circle-animation {
+            0% {
+                transform: scale(0);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        @keyframes stem-animation {
+            0% {
+                opacity: 0;
+                transform: rotate(45deg) scale(0);
+            }
+
+            100% {
+                opacity: 1;
+                transform: rotate(45deg) scale(1);
+            }
+        }
+
+        @keyframes kick-animation {
+            0% {
+                opacity: 0;
+                transform: rotate(-45deg) scale(0);
+            }
+
+            100% {
+                opacity: 1;
+                transform: rotate(-45deg) scale(1);
+            }
+        }
+
+        /* Google Sign-In Button */
+        .google-signin {
+            margin: 15px 0;
+        }
+
+        #google-login {
+ 
+            padding: 10px;
+            background-color: #4caf50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            transition: background-color 0.3s ease;
+            position: absolute;
+            top: 68%;
+            width: 43%;
+            left: 57%;
+        }
+
+        #google-login:hover {
+            background-color: #357AE8;
+        }
+
+        #google-login img {
+            width: 20px;
+            height: 20px;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <div class="logo">
+            <img src="Gemini_Generated_Image_eh5zqqeh5zqqeh5z-removebg-preview.png" style="
+            width: 200px;
+            height: 200px;
+            margin-top: -1.6%;
+            margin-left: 1%;
+            border-radius: 70px;
+            transform: rotate(-10deg);">
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- Login Success Animation -->
+        <div class="login-success-animation" id="login-success">
+            <div class="success-message">
+                <div class="checkmark">
+                    <div class="checkmark-circle"></div>
+                    <div class="checkmark-stem"></div>
+                    <div class="checkmark-kick"></div>
+                </div>
+                <h2>Login Successful!</h2>
+            </div>
+        </div>
+
+        <!-- Login Box -->
+        <div class="form-box" id="login-box">
+            <h2>Login</h2>
+            <form>
+                <input type="email" name="email" placeholder="Email" required>
+                <input type="password" name="password" placeholder="Password" required>
+                <button type="submit" style="width:50%">Log in</button>
+            </form>
+            <div class="google-signin">
+                <button id="google-login">
+                    <img src="icons8-google-logo.svg" alt="Google Logo">
+                    Sign in with Google
+                </button>
+            </div>
+            <div class="switch">
+                Don't have an account? <a href="#" id="display-sign-up">Sign Up</a>
+            </div>
+        </div>
+
+        <!-- Sign Up Box -->
+        <div class="form-box" id="signup-box" style="display: none;">
+            <h2>Sign Up</h2>
+            <form>
+                <input type="text" name="name" placeholder="Full Name" required>
+                
+                <input type="email" name="email" placeholder="Email" required>
+                <input type="text" name="mobileno" placeholder="Mobile No" required>
+                <input type="text" name="address" placeholder="Address" required>
+                <input type="password" name="password" placeholder="Password" required>
+                <input type="password" name="confirm_password" placeholder="Confirm Password" required>
+                <button type="submit">Sign Up</button>
+            </form>
+            <div class="switch">
+                Already have an account? <a href="#" id="display-sign-in">Login</a>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="login.js"></script>
+</body>
+
+</html>

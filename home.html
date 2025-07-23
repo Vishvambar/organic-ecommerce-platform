@@ -1,0 +1,958 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VnOrganics</title>
+    <link rel="stylesheet" href="style.css">
+
+</head>
+<style>
+    .result-item {
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
+        width: 100%;
+        gap: 30px;
+    }
+
+    .result-item img {
+        width: 150px;
+        height: 100px;
+        margin-right: 10px;
+    }
+
+    /* Full-Screen Modal */
+    .modal {
+        z-index: 1000;
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.7);
+        justify-content: center;
+        align-items: center;
+        animation: fadeIn 0.5s ease-in-out;
+    }
+
+    /* Modal Content */
+    .modal-content {
+        background: white;
+        width: 100vw;
+        height: 100vh;
+        padding: 20px;
+        border-radius: 10px;
+        text-align: center;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        transform: translateY(50px);
+        animation: slideUp 0.5s ease-in-out forwards;
+        overflow-y: auto;
+    }
+
+    /* Close Button */
+    .close-modal {
+        float: right;
+        font-size: 24px;
+        cursor: pointer;
+    }
+
+    /* Product Styling */
+    #searchResults {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 15px;
+        margin-top: 20px;
+    }
+
+    .product-search {
+        background: #f9f9f9;
+        /* padding: 0px; */
+        border-radius: 8px;
+        text-align: center;
+        cursor: pointer;
+        width: 200px;
+        height: 227px;
+        margin: 10px;
+        transition: transform 0.3s;
+        box-shadow: 0 8px 12px #0015;
+        border-radius: 15px 15px 15px 15px;
+    }
+
+    .product-search:hover {
+        cursor: pointer;
+        transform: scale(1.05);
+    }
+
+    .product-search img {
+        width: 100%;
+        height: 70%;
+        cursor: pointer;
+        /* border-radius: 5px 5px 5px; */
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+    }
+
+    /* Animations */
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+
+        to {
+            opacity: 1;
+        }
+    }
+
+    @keyframes slideUp {
+        from {
+            transform: translateY(50px);
+        }
+
+        to {
+            transform: translateY(0);
+        }
+    }
+
+    .h2-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: green;
+    }
+
+    #search-for-products {
+        color: green;
+    }
+
+    #modalSearchInput {
+        width: 100%;
+        max-width: 500px;
+        /* Limits the width on larger screens */
+        padding: 12px 15px;
+        font-size: 16px;
+        border: 2px solid #ccc;
+        border-radius: 25px;
+        outline: none;
+        transition: all 0.3s ease-in-out;
+        text-align: center;
+    }
+
+    /* Search Bar Hover Effect */
+    #modalSearchInput:hover {
+        border-color: #888;
+    }
+
+    /* Search Bar Focus Effect */
+    #modalSearchInput:focus {
+        /* Highlight color */
+        background-color: #fffaf0;
+    }
+
+    /* Make it Responsive */
+    @media (max-width: 600px) {
+        #modalSearchInput {
+            width: 90%;
+            /* Full width on small screens */
+            font-size: 14px;
+        }
+    }
+
+    .search-logo {
+        height: 7rem;
+    }
+
+    .textb-new {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 12%;
+    }
+</style>
+
+<body>
+    <div id="cartAnimation" class="cart-animation">Item added to cart!</div>
+
+
+    <div id="searchModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal()">&times;</span>
+            <div class="h2-container">
+                <img class="search-logo"
+                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmyVJfl3S3aeV3fT827UANjcNRzNRXnW7nWw&s"
+                    alt="">
+
+                <!-- Search Bar Inside Modal -->
+                <input type="text" id="modalSearchInput" placeholder="Search for products..." oninput="performSearch()">
+
+            </div>
+
+            <div id="searchResults"></div>
+        </div>
+    </div>
+    <div class="new-hero">
+        <div class="header-new">
+            <div class="logo">
+                <img src="Gemini_Generated_Image_eh5zqqeh5zqqeh5z-removebg-preview.png" style="     width: 200px;
+                height: 200px;
+                margin-top: 35%;
+                margin-left: -56%;
+                border-radius: 70px;
+                transform: rotate(-10deg);">
+            </div>
+            <div class="list" style=" margin-top: 5%;">
+                <a href="#category">Categories</a>
+                <a href="#trending">Trending</a>
+                <a href="knowmore.html">KnowMore</a>
+
+
+            </div>
+            <a href="new_cart.html" style=" margin-top: 5%;">
+                <div class="new-cart-logo">
+
+                </div>
+            </a>
+            <a href="profile-info.html" style=" margin-top: 5%;">
+                <div class="profile-logo">
+
+                </div>
+            </a>
+        </div>
+        <section class="hero-section">
+            <div class="hero-content">
+                <div class="h1-p">
+                    <h1>Discover the freshest organic products for your healthy lifestyle</h1>
+                    <p style="display:none;">Explore organic options by category or check out our exclusive deals!</p>
+                </div>
+                <div class="search-bar">
+                    <input type="text" id="searchBar" id="searchInput" placeholder="Search for organic products"
+                        onclick="openModal()" oninput="performSearch()">
+                    <button class="search-btn">Search</button>
+                </div>
+                <div style="margin-top:3%; " id="searchResults">
+
+                </div>
+            </div>
+        </section>
+
+
+    </div>
+    <div class="whole-video-section-wrapper">
+        <div class="arrow-wrapper">
+            <div class="arrow-buttons">
+                <button class="arrow-btn left-arrow" id="scroll-left">
+                    <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                    </svg>
+                </button>
+                <button class="arrow-btn right-arrow" id="scroll-right">
+                    <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <div class="video-section-wrapper">
+
+            <div class="videos" id="videos">
+                <div class="video-container">
+                    <div class="video">
+                        <video src="https://video.gumlet.io/64661d8e673536e1fe9044e2/667bc011ecff9558b5c2eb8f/main.mp4"
+                            muted loop autoplay preload="metadata"></video>
+                    </div>
+                    <!-- <div class="video-info-section">
+                        <div class="video-name"><img src="https://i.ibb.co/Qrvx8wd/leaf.png" alt="">
+                            <p>Organic Sunflower Oil</p>
+                        </div>
+                        <div class="video-price">140$ &nbsp;&nbsp; 135$</div>
+                        <div class="add-to-cart-btn"><button class="add-to-cart-hover">Add To Cart</button></div>
+                    </div> -->
+                    <!-- </div>
+                <div class="video-container">
+                    <div class="video">
+                        <video src="https://video.gumlet.io/64661d8e673536e1fe9044e2/6683bd7f0fe372ddb1c9850e/main.mp4"
+                            muted loop autoplay preload="metadata"></video>
+                    </div>
+                     <div class="video-info-section">
+                        <div class="video-name"><img src="https://i.ibb.co/Qrvx8wd/leaf.png" alt="">
+                            <p>Organic Sunflower Oil</p>
+                        </div>
+                        <div class="video-price">140$ &nbsp;&nbsp; 135$</div>
+                        <div class="add-to-cart-btn"><button class="add-to-cart-hover">Add To Cart</button></div>
+                    </div> -->
+                </div>
+                <div class="video-container">
+                    <div class="video">
+                        <video src="https://video.gumlet.io/64661d8e673536e1fe9044e2/6683be728ae4d0634efc507e/main.mp4"
+                            muted loop autoplay preload="metadata"></video>
+                    </div>
+                    <!-- <div class="video-info-section">
+                        <div class="video-name"><img src="https://i.ibb.co/Qrvx8wd/leaf.png" alt="">
+                            <p>Organic Sunflower Oil</p>
+                        </div>
+                        <div class="video-price">140$ &nbsp;&nbsp; 135$</div>
+                        <div class="add-to-cart-btn"><button class="add-to-cart-hover">Add To Cart</button></div>
+                    </div> -->
+                </div>
+                <div class="video-container">
+                    <div class="video">
+                        <video src="https://video.gumlet.io/64661d8e673536e1fe9044e2/6683c6b63fc1ed15f2cea5da/main.mp4"
+                            muted loop autoplay preload="metadata"></video>
+                    </div>
+                    <!-- <div class="video-info-section">
+                        <div class="video-name"><img src="https://i.ibb.co/Qrvx8wd/leaf.png" alt="">
+                            <p>Organic Sunflower Oil</p>
+                        </div>
+                        <div class="video-price">140$ &nbsp;&nbsp; 135$</div>
+                        <div class="add-to-cart-btn"><button class="add-to-cart-hover">Add To Cart</button></div>
+                    </div> -->
+                </div>
+                <div class="video-container">
+                    <div class="video">
+                        <video src="https://video.gumlet.io/64661d8e673536e1fe9044e2/6683c5ec3fc1ed15f2cea133/main.mp4"
+                            muted loop autoplay preload="metadata"></video>
+                    </div>
+                    <!-- <div class="video-info-section">
+                        <div class="video-name"><img src="https://i.ibb.co/Qrvx8wd/leaf.png" alt="">
+                            <p>Organic Sunflower Oil</p>
+                        </div>
+                        <div class="video-price">140$ &nbsp;&nbsp; 135$</div>
+                        <div class="add-to-cart-btn"><button class="add-to-cart-hover">Add To Cart</button></div>
+                    </div> -->
+                </div>
+                <div class="video-container">
+                    <div class="video">
+                        <video src="https://video.gumlet.io/64661d8e673536e1fe9044e2/668ab90dc770c53a5dde1ec0/main.mp4"
+                            muted loop autoplay preload="metadata"></video>
+                    </div>
+                    <!-- <div class="video-info-section">
+                        <div class="video-name"><img src="https://i.ibb.co/Qrvx8wd/leaf.png" alt="">
+                            <p>Organic Sunflower Oil</p>
+                        </div>
+                        <div class="video-price">140$ &nbsp;&nbsp; 135$</div>
+                        <div class="add-to-cart-btn"><button class="add-to-cart-hover">Add To Cart</button></div>
+                    </div> -->
+                </div>
+                <div class="video-container">
+                    <div class="video">
+                        <video src="https://video.gumlet.io/64661d8e673536e1fe9044e2/667bc010ecff9558b5c2eb69/main.mp4"
+                            muted loop autoplay preload="metadata"></video>
+                    </div>
+                    <!-- <div class="video-info-section">
+                        <div class="video-name"><img src="https://i.ibb.co/Qrvx8wd/leaf.png" alt="">
+                            <p>Organic Sunflower Oil</p>
+                        </div>
+                        <div class="video-price">140$ &nbsp;&nbsp; 135$</div>
+                        <div class="add-to-cart-btn"><button class="add-to-cart-hover">Add To Cart</button></div>
+                    </div> -->
+                </div>
+                <div class="video-container">
+                    <div class="video">
+                        <video src="https://video.gumlet.io/64661d8e673536e1fe9044e2/667bbff1ecff9558b5c2e7d4/main.mp4"
+                            muted loop autoplay preload="metadata"></video>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="advertisement">
+
+        <div class="carousel">
+            <div class="carousel-track">
+
+                <img src="food img .png" alt="Image 4">
+                <img src="https://www.jiwa.in/cdn/shop/files/healthy_oats_range_of_organic_product-healthy_start-jiwa_1512x.jpg?v=1670236329"
+                    alt="Image 2">
+                <img src="https://www.jiwa.in/cdn/shop/files/salads-stay_fit_stay_stylish-use_code50_offer-jiwa_1512x.jpg?v=1670235456"
+                    alt="Image 3">
+                <img src="https://www.consciousfood.com/cdn/shop/files/desktop_8.jpg?v=1735214048&width=2000"
+                    alt="Image 1">
+
+
+            </div>
+            <button class="carousel-button left">&#8249;</button>
+            <button class="carousel-button right">&#8250;</button>
+        </div>
+
+
+    </div>
+    <div id="trending" class="trending">
+        <div class="product-container">
+            <div class="submenu">
+                <img class="image-container"
+                    src="https://img.freepik.com/premium-photo/indian-punjabi-delhi-bread-tutti-fruitti-flavoured-toast-served-with-indian-hot-tea-selective-focus-texture_466689-17693.jpg"
+                    alt="">
+
+                <!-- <div class="add-to-cart">Add To Cart</div> -->
+                <div class="wrapper-for-cart">
+                    <div class="textb">
+
+                        <p>
+                            Toast-Bread
+                        </p>
+                        <div class="pricesection">
+
+                            <h3>
+                                $&nbsp;9.07
+
+                            </h3>
+
+                        </div>
+                    </div>
+                    <div class="trending-cart-icon">
+                        <img src="shopping-bag_6467105.png">
+                    </div>
+                </div>
+            </div>
+            <div class="submenu">
+                <img class="image-container"
+                    src="https://media.istockphoto.com/id/522566233/photo/toast-bread.jpg?s=612x612&w=0&k=20&c=Dk7k60QaB4fVik7OyO9LQGi_a_2vEAdKX7GBJDzqskw="
+                    alt="">
+                <!-- <div class="add-to-cart">Add To Cart</div> -->
+                <div class="wrapper-for-cart">
+
+                    <div class="textb">
+
+                        <p>
+                            Bread
+                        </p>
+                        <div class="pricesection">
+
+                            <h3>
+                                $&nbsp;9.07
+
+                            </h3>
+
+                        </div>
+                    </div>
+                    <div class="trending-cart-icon">
+                        <img src="shopping-bag_6467105.png">
+                    </div>
+                </div>
+            </div>
+            <div class="submenu">
+                <img class="image-container"
+                    src="https://t4.ftcdn.net/jpg/06/32/64/95/360_F_632649552_4Gi6jOlnbDllG1qyjKo53lzdFDJNDfhq.jpg"
+                    alt="">
+                <!-- <div class="add-to-cart">Add To Cart</div> -->
+                <div class="wrapper-for-cart">
+
+                    <div class="textb">
+
+                        <p>
+                            Fresh Paneer
+                        </p>
+                        <div class="pricesection">
+
+                            <h3>
+                                $&nbsp;9.07
+
+                            </h3>
+
+                        </div>
+                    </div>
+                    <div class="trending-cart-icon">
+                        <img src="shopping-bag_6467105.png">
+                    </div>
+                </div>
+            </div>
+            <div class="submenu">
+                <img class="image-container"
+                    src="https://media.istockphoto.com/id/1494763483/photo/banana-concept.jpg?s=612x612&w=0&k=20&c=ZeVP-L6ClmyT-i0N-QAbDK7q37uHhrzg7KOzMkaOtg4="
+                    alt="">
+                <!-- <div class="add-to-cart">Add To Cart</div> -->
+                <div class="wrapper-for-cart">
+
+                    <div class="textb">
+
+                        <p>
+                            Soft, sweet bananas
+                        </p>
+                        <div class="pricesection">
+
+                            <h3>
+                                $&nbsp;9.07
+
+                            </h3>
+
+                        </div>
+                    </div>
+                    <div class="trending-cart-icon">
+                        <img src="shopping-bag_6467105.png">
+                    </div>
+                </div>
+            </div>
+            <div class="submenu">
+                <img class="image-container"
+                    src="https://iorganicmilk.com/cdn/shop/products/darjeeling-second-flush-green-tea-for-age-defense-and-focus-iorganic-iorganic-1_400x.png?v=1660136066"
+                    alt="">
+                <!-- <div class="add-to-cart">Add To Cart</div> -->
+                <div class="wrapper-for-cart">
+
+                    <div class="textb">
+
+                        <p>
+                            Tea Powder
+                        </p>
+                        <div class="pricesection">
+
+                            <h3>
+                                $&nbsp;9.07
+
+                            </h3>
+
+                        </div>
+                    </div>
+                    <div class="trending-cart-icon">
+                        <img src="shopping-bag_6467105.png">
+                    </div>
+                </div>
+            </div>
+            <div class="submenu">
+                <img class="image-container"
+                    src="https://t3.ftcdn.net/jpg/00/09/65/58/360_F_9655832_CaCWV2cCdn3ALnElzFKqDqUuWlZOGHhJ.jpg"
+                    alt="">
+                <!-- <div class="add-to-cart">Add To Cart</div> -->
+                <div class="wrapper-for-cart">
+
+                    <div class="textb">
+
+                        <p>
+                            Biscuts a perfect snack
+                        </p>
+                        <div class="pricesection">
+
+                            <h3>
+                                $&nbsp;9.07
+
+                            </h3>
+
+                        </div>
+                    </div>
+                    <div class="trending-cart-icon">
+                        <img src="shopping-bag_6467105.png">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="trending-ad">
+            <img src="https://swadesiway.com/wp-content/uploads/2025/01/SW-Landing-Page-S4-768x1136.jpg" alt=""
+                style="height: 90%; width: 90%; ">
+        </div>
+    </div>
+
+
+    <div class="collection-wrapper" id="category">
+        <div class="collection_header">
+            <h3>Categories</h3>
+        </div>
+        <div class="main-collection">
+            <div class="collections">
+                <div class="collection">
+                    <div class="img_collection">
+                        <img
+                            src="https://img.freepik.com/free-photo/healthy-vegetables-wooden-table_1150-38014.jpg?semt=ais_hybrid">
+                    </div>
+                    <div class="collection_name" id="vagetables" style="cursor: pointer;">
+                        <p>Vagetables<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="feather feather-arrow-right">
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                                <polyline points="12 5 19 12 12 19"></polyline>
+                            </svg>
+                        </p>
+                    </div>
+                </div>
+                <div class="collection">
+                    <div class="img_collection">
+                        <img
+                            src="https://w0.peakpx.com/wallpaper/323/395/HD-wallpaper-fruit-basket-fruit-eat-food-basket.jpg">
+                    </div>
+                    <div class="collection_name" id="fruits" style="cursor: pointer;">
+                        <p>Fruits<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="feather feather-arrow-right">
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                                <polyline points="12 5 19 12 12 19"></polyline>
+                            </svg>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="collection">
+                    <div class="img_collection">
+                        <img src="https://www.isayorganic.com/cdn/shop/files/Untitled-2.jpg?v=1664968232&width=1500">
+                    </div>
+                    <div class="collection_name" id="gift_hamper" style="cursor: pointer;">
+                        <p>Gift Hampers <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right">
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                                <polyline points="12 5 19 12 12 19"></polyline>
+                            </svg>
+                        </p>
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="collections">
+                <div class="collection">
+                    <div class="img_collection">
+                        <img src="https://www.isayorganic.com/cdn/shop/files/0000_Wholefoods2.png?v=1656747009">
+                    </div>
+                    <div class="collection_name" id="wholefoods" style="cursor: pointer;">
+                        <p>WholeFoods<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="feather feather-arrow-right">
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                                <polyline points="12 5 19 12 12 19"></polyline>
+                            </svg>
+                        </p>
+                    </div>
+                </div>
+                <div class="collection">
+                    <div class="img_collection">
+                        <img src="https://www.isayorganic.com/cdn/shop/files/cooking.jpg?v=1656689942&width=1500">
+                    </div>
+                    <div class="collection_name" id="cookingessentials">
+                        <p>Cooking Essentials<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right">
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                                <polyline points="12 5 19 12 12 19"></polyline>
+                            </svg>
+                        </p>
+                    </div>
+                </div>
+                <div class="collection">
+                    <div class="img_collection">
+                        <img src="https://www.isayorganic.com/cdn/shop/files/snacks.jpg?v=1656689996&width=1500">
+                    </div>
+                    <div class="collection_name" id="snacks" style="cursor: pointer;">
+                        <p>Snacks & Condiments<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right">
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                                <polyline points="12 5 19 12 12 19"></polyline>
+                            </svg>
+                        </p>
+                    </div>
+                </div>
+
+
+
+            </div>
+        </div>
+    </div>
+    <!-- <div id="grocery" class="groceries">
+        <div class="g_header">
+            <h3>Groceries </h3>
+        </div>
+
+        <div class="g-column">
+            <div class="sub-block">
+                <img src="https://organictattva.com/cdn/shop/files/Hamper.png?v=1716538565&width=400" alt="">
+                <button class="gbutton ">Combos & Deals </button>
+            </div>
+            <div class="sub-block">
+                <img src="https://organictattva.com/cdn/shop/files/Flour.png?v=1716538567&width=400" alt="">
+                <button class="gbutton ">Flours & Suji </button>
+            </div>
+            <div class="sub-block">
+                <img src="https://organictattva.com/cdn/shop/files/Rice-ezgif.com-webp-to-png-converter.png?v=1716538568&width=400"
+                    alt="">
+                <button class="gbutton ">Rice & Rice Product </button>
+            </div>
+            <div class="sub-block">
+                <img src="https://organictattva.com/cdn/shop/files/Pulses.png?v=1716539227&width=400" alt="">
+                <button class="gbutton ">Salts </button>
+            </div>
+
+        </div>
+        <div class="g-column">
+            <div class="sub-block">
+                <img src="https://organictattva.com/cdn/shop/files/Oils.png?v=1716538568&width=400" alt="">
+                <button class="gbutton ">Oil & Ghee </button>
+            </div>
+            <div class="sub-block">
+                <img src="https://organictattva.com/cdn/shop/files/Dryfruits.png?v=1716538567&width=400" alt="">
+                <button class="gbutton ">Dry Fruits & Nuts </button>
+            </div>
+            <div class="sub-block">
+                <img src="https://organictattva.com/cdn/shop/files/Tea-_-Coffee-min_c.png?v=1716538568&width=400    "
+                    alt="">
+                <button class="gbutton ">Tea & Coffee</button>
+            </div>
+            <div class="sub-block">
+                <img src="https://organictattva.com/cdn/shop/files/RTC-min_c.png?v=1716538568&width=400" alt="">
+                <button class="gbutton ">Ready To Cook </button>
+            </div>
+
+        </div>
+
+
+    </div> -->
+
+
+
+
+    <div class="farmer-registration">
+        <div class="farmer-register-button">
+            <a href="farmer-registration.html"></a>
+        </div>
+        <div class="logo-hide">
+
+        </div>
+        <div class="farmer-section-logo">
+            <img src="logo2.png">
+        </div>
+        <img src="https://organictattva.com/cdn/shop/files/Tatwa_Life_Banner_2__1.jpg?v=1716450202" alt="">
+
+    </div>
+
+    <div class="trending">
+        <div class="trending-ad">
+            <img src="https://swadesiway.com/wp-content/uploads/2025/01/SW-Landing-Page-S3-768x1136.jpg" alt=""
+                style="height: 90%; width: 90%; ">
+        </div>
+        <div class="product-container">
+            <div class="submenu">
+                <img class="image-container"
+                    src="https://img.freepik.com/free-photo/display-radishes-board-marble_114579-65140.jpg?ga=GA1.1.2018740749.1726916130&semt=ais_hybrid"
+                    alt="">
+                <!-- <div class="add-to-cart">Add To Cart</div> -->
+                <div class="wrapper-for-cart">
+                    <div class="textb">
+
+                        <p>
+                            beetroots
+                        </p>
+                        <div class="pricesection">
+
+                            <h3>
+                                &nbsp;9.07
+
+                            </h3>
+
+                        </div>
+                    </div>
+                    <div class="trending-cart-icon">
+                        <img src="shopping-bag_6467105.png">
+                    </div>
+                </div>
+            </div>
+            <div class="submenu">
+                <img class="image-container"
+                    src="https://img.freepik.com/free-photo/top-view-healthy-food-bowl-fresh-organic-peppers_114579-82377.jpg?ga=GA1.1.2018740749.1726916130&semt=ais_hybrid"
+                    alt="">
+                <!-- <div class="add-to-cart">Add To Cart</div> -->
+                <div class="wrapper-for-cart">
+                    <div class="textb">
+
+                        <p>
+                            Bell Pepper
+                        </p>
+                        <div class="pricesection">
+
+                            <h3>
+                                $&nbsp;9.07
+
+                            </h3>
+
+                        </div>
+
+                    </div>
+                    <div class="trending-cart-icon">
+                        <img src="shopping-bag_6467105.png">
+                    </div>
+                </div>
+            </div>
+            <div class="submenu">
+                <img class="image-container"
+                    src="https://img.freepik.com/premium-photo/green-organic-lettuce-salad-leaf-black-wet-background_93314-2489.jpg?ga=GA1.1.2018740749.1726916130&semt=ais_hybrid"
+                    alt="">
+                <!-- <div class="add-to-cart">Add To Cart</div> -->
+                <div class="wrapper-for-cart">
+
+                    <div class="textb">
+
+                        <p>
+                            Lettuce
+                        </p>
+                        <div class="pricesection">
+
+                            <h3>
+                                $&nbsp;9.07
+
+                            </h3>
+
+                        </div>
+
+                    </div>
+                    <div class="trending-cart-icon">
+                        <img src="shopping-bag_6467105.png">
+                    </div>
+                </div>
+            </div>
+            <div class="submenu">
+                <img class="image-container"
+                    src="https://img.freepik.com/premium-photo/ripe-tasty-cucumbers_159938-496.jpg?ga=GA1.1.2018740749.1726916130&semt=ais_hybrid"
+                    alt="">
+                <!-- <div class="add-to-cart">Add To Cart</div> -->
+                <div class="wrapper-for-cart">
+
+                    <div class="textb">
+
+                        <p>
+                            Cucumber
+                        </p>
+                        <div class="pricesection">
+
+                            <h3>
+                                $&nbsp;9.07
+
+                            </h3>
+
+
+                        </div>
+                    </div>
+                    <div class="trending-cart-icon">
+                        <img src="shopping-bag_6467105.png">
+                    </div>
+                </div>
+            </div>
+            <div class="submenu">
+                <img class="image-container"
+                    src="https://img.freepik.com/free-photo/flat-lay-fresh-corn-composition-with-copy-space_23-2148642968.jpg?ga=GA1.1.2018740749.1726916130&semt=ais_hybrid"
+                    alt="">
+                <!-- <div class="add-to-cart">Add To Cart</div> -->
+                <div class="wrapper-for-cart">
+
+                    <div class="textb">
+
+                        <p>
+                            Corn
+                        </p>
+                        <div class="pricesection">
+
+                            <h3>
+                                $&nbsp;9.07
+
+                            </h3>
+
+                        </div>
+                    </div>
+                    <div class="trending-cart-icon">
+                        <img src="shopping-bag_6467105.png">
+                    </div>
+                </div>
+            </div>
+            <div class="submenu">
+                <img class="image-container"
+                    src="https://img.freepik.com/premium-photo/high-angle-view-vegetables-white-background_1048944-20989935.jpg?ga=GA1.1.2018740749.1726916130&semt=ais_hybrid"
+                    alt="">
+                <!-- <div class="add-to-cart">Add To Cart</div> -->
+                <div class="wrapper-for-cart">
+
+                    <div class="textb">
+
+                        <p>
+                            Bhendi
+                        </p>
+                        <div class="pricesection">
+
+                            <h3>
+                                $&nbsp;9.07
+
+                            </h3>
+
+                        </div>
+                    </div>
+
+                    <div class="trending-cart-icon">
+                        <img src="shopping-bag_6467105.png">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="ok" id="ok">
+        <div class="main-chose">
+
+            <div class="img">
+
+            </div>
+
+            <div class="why-chose">
+                <h1>
+                    Why Choose Uss ?
+                </h1>
+                <p>
+                    By building a culture of sustainability and wholesome living, we strive for a healthier you and
+                    a
+                    healthier planet.
+                </p>
+
+            </div>
+
+            <div class="img">
+
+            </div>
+
+        </div>
+    </div>
+    <div class="know">
+        <button><a href="knowmore.html">Know More</a></button>
+    </div>
+    <div class="time-main">
+        <div class="honey">
+            <div class="hone-img">
+                <img src="https://cdn.shopify.com/s/files/1/0489/5028/0356/files/honey_comb.png?v=1708335851" alt="">
+            </div>
+            <h1>
+                DELIVERY TIMELINE
+            </h1>
+        </div>
+        <img src="https://www.consciousfood.com/cdn/shop/files/delivery_timeline_desktop_1_1920x_crop_center.png?v=1716184972"
+            alt="">
+
+
+    </div>
+
+    <footer class="main-footer">
+
+        <div class="logo footer-logo">
+            <a href="#">VNORGANICS</a>
+        </div>
+        <ul class="nav-links footer-nav-links">
+            <li><a href="contact.html">CONTACT US</a></li>
+        </ul>
+        <div class="copyright">
+            <a href="https://www.instagram.com/vishvambar_18?igsh=MWN6eHJtMmF0MHg3aQ==" target="_blank">
+                <p>&copy;&nbsp;vishvambar_18</p>
+            </a>
+            <a href="https://www.instagram.com/pranavshinde_85?igsh=MTdxMmcybDR5MnFwZQ==" target="_blank">
+                <p>&copy;&nbsp;pranavshinde_85</p>
+            </a>
+        </div>
+
+    </footer>
+    <script src="search.js"></script>
+
+    <script src="script.js"></script>
+    
+</body>
+
+</html>

@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet"> -->
+
+    <link rel="stylesheet" href="gift_hamper.css">
+</head>
+<style>
+    .image-container{
+        cursor: pointer;
+    }
+    .cart-icon {
+        cursor: pointer;
+    }
+
+    .new-cart-logo {
+        background-image: url('new-cart-logo.png');
+        background-size: cover;
+        width: 40px;
+        height: 40px;
+    }
+
+    .profile-logo {
+        background-image: url('user_12515988.png');
+        background-size: cover;
+        width: 40px;
+        height: 40px;
+    }
+
+    .searchbar {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: transparent;
+        padding: 10px 20px;
+        gap: 10px;
+
+        caret-color: black;
+    }
+
+    .search-input {
+        flex: 1;
+        padding: 10px 15px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+
+        font-size: 16px;
+        caret-color: black;
+        transition: border-color 0.3s ease;
+    }
+
+    .search-input:focus {
+        outline: none;
+    }
+
+    .search-btn {
+        padding: 10px 10px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 41px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    .search-btn:hover {
+        background-color: #0056b3;
+    }
+
+    #searchResults {
+        display: flex;
+        flex-wrap: wrap;
+        background: white;
+        gap: 10px;
+        width: 100%;
+        max-height: 400px;
+        overflow-y: auto;
+        scrollbar-width: none;
+        /* For Firefox */
+    }
+
+    #searchResults::-webkit-scrollbar {
+        display: none;
+        /* For Chrome, Safari, Opera */
+    }
+
+    #searchBar {
+        width: 60%;
+        padding: 10px;
+        font-size: 16px;
+    }
+
+    .submenu-search {
+        width: 100%;
+        height: 130px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        color: black;
+        flex-direction: row-reverse;
+        border-radius: 15px;
+        background: #f9f9f9;
+        padding: 10px;
+    }
+
+    .submenu-search img {
+        height: 70%;
+        width: 30%;
+        object-fit: cover;
+        border-radius: 15px;
+        margin: 20px;
+    }
+
+    .submenu-search p {
+        margin: 35px;
+        flex: 1;
+        font-size: 18px;
+    }
+</style>
+
+<body>
+    <div id="cartAnimation" class="cart-animation">Item added to cart!</div>
+
+    <nav>
+        <div class="logo">
+            <a href="#" style="color:aliceblue;">URBAN ORGANICS</a>
+        </div>
+        <ul class="nav-links">
+            <li><a href="home.html">HOME</a></li>
+            <li><a href="knowmore.html">KNOWMORE</a></li>
+            <li><a href="contact.html">CONTACT US</a></li>
+
+        </ul>
+        
+        <div class="icons">
+
+            <a href="new_cart.html">
+                <div class="new-cart-logo">
+
+                </div>
+            </a>
+            <a href="profile-info.html">
+                <div class="profile-logo">
+
+                </div>
+            </a>
+        </div>
+
+    </nav>
+
+    <div style="margin-top: 3%;" id="searchResults"></div>
+
+    </div>
+    <div class="okk">
+        <div class="product-container">
+            <div class="submenu">
+                <div class="image-container">
+                    <img src="https://www.fnp.com/images/pr/l/v200/dry-fruits-feast_1.jpg" alt="">
+
+                    <div class="cart-icon">
+                        <i class="fa fa-shopping-cart"></i>
+                    </div>
+                </div>
+                <div class="textb">
+
+                    <p>
+                        Dry Fruits Feast
+                    </p>
+                    <div class="pricesection">
+                        <h3>
+                            $&nbsp;7.20
+
+                        </h3>
+                        <div class="cart-icon">
+                            <i class="fa fa-shopping-cart"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="submenu">
+                <div class="image-container">
+                    <img src="https://www.fnp.com/images/pr/l/v200/personalised-notebook-chocolate-combo_1.jpg" alt="">
+
+                    <div class="cart-icon">
+                        <i class="fa fa-shopping-cart"></i>
+                    </div>
+                </div>
+                <div class="textb">
+
+                    <p>
+                        Personalised Notebook Chocolate Combo
+                    </p>
+                    <div class="pricesection">
+                        <h3>
+                            $&nbsp;13.00
+
+                        </h3>
+                        <div class="cart-icon">
+                            <i class="fa fa-shopping-cart"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="submenu">
+                <div class="image-container">
+                    <img src="https://www.fnp.com/images/pr/l/v200/exotic-selection-treats-hamper_1.jpg" alt="">
+
+                    <div class="cart-icon">
+                        <i class="fa fa-shopping-cart"></i>
+                    </div>
+                </div>
+                <div class="textb">
+
+                    <p>
+                        Exotic Selectiona Treats Hamper
+                    </p>
+                    <div class="pricesection">
+                        <h3>
+                            $&nbsp;10.50
+
+                        </h3>
+                        <div class="cart-icon">
+                            <i class="fa fa-shopping-cart"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="submenu">
+                <div class="image-container">
+                    <img src="https://www.fnp.com/images/pr/l/v200/lets-do-this-personalised-gift-set_1.jpg" alt="">
+
+                    <div class="cart-icon">
+                        <i class="fa fa-shopping-cart"></i>
+                    </div>
+                </div>
+                <div class="textb">
+
+                    <p>
+                        Lets Do This Personalised Gift Set
+                    </p>
+                    <div class="pricesection">
+                        <h3>
+                            $&nbsp;12.20
+                        </h3>
+                        <div class="cart-icon">
+                            <i class="fa fa-shopping-cart"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="product-container">
+            <div class="submenu">
+
+                <div class="image-container">
+
+                    <img src="https://www.fnp.com/images/pr/l/v200/sweet-memories-pink-roses-bouquet-chocolate-cake_1.jpg"
+                        alt="">
+                    <div class="cart-icon">
+                        <i class="fa fa-shopping-cart"></i>
+                    </div>
+                </div>
+
+                <div class="textb">
+
+                    <p>
+                        Sweet Memories Pink Roses Bouquet Chocolate Cake
+                    </p>
+                    <div class="pricesection">
+
+                        <h3>
+                            $&nbsp;6.30
+
+                        </h3>
+                        <div class="cart-icon">
+                            <i class="fa fa-shopping-cart"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="submenu">
+                <div class="image-container">
+                    <img src="https://www.fnp.com/images/pr/l/v200/bespoke-fragrance-gift-set-unisex_1.jpg" alt="">
+
+                    <div class="cart-icon">
+                        <i class="fa fa-shopping-cart"></i>
+                    </div>
+                </div>
+
+                <div class="textb">
+
+                    <p>
+                        Bespoke Fragrance Gift Set Unisex
+                    </p>
+                    <div class="pricesection">
+
+                        <h3>
+                            $&nbsp;2.20
+
+                        </h3>
+                        <div class="cart-icon">
+                            <i class="fa fa-shopping-cart"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="submenu">
+                <div class="image-container">
+                    <img src="https://www.fnp.com/images/pr/l/v200/omay-foods-royal-snacks-gift-box_1.jpg" alt="">
+
+                    <div class="cart-icon">
+                        <i class="fa fa-shopping-cart"></i>
+                    </div>
+                </div>
+
+                <div class="textb">
+
+                    <p>
+                        Omay Food Royal Snacks Gift Box
+                    </p>
+                    <div class="pricesection">
+
+                        <h3>
+                            $&nbsp;18.20
+                        </h3>
+                        <div class="cart-icon">
+                            <i class="fa fa-shopping-cart"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+        <div class="product-container">
+            <div class="submenu">
+
+                <div class="image-container">
+                    <img src="https://www.fnp.com/images/pr/l/v200/timeless-love-red-roses-bouquet-chocolate-cake_1.jpg"
+                        alt="">
+                    <div class="cart-icon">
+                        <i class="fa fa-shopping-cart"></i>
+                    </div>
+                </div>
+                <div class="textb">
+
+                    <p>
+                        Timeless Love Red Roses Bouquet Chocolate Cake
+                    </p>
+                    <div class="pricesection">
+                        <h3>
+                            $&nbsp;16.93
+
+                        </h3>
+                        <div class="cart-icon">
+                            <i class="fa fa-shopping-cart"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="submenu">
+
+
+                <div class="image-container">
+                    <img src="https://www.fnp.com/images/pr/l/v200/you-are-enough-personalised-bamboo-made-gift-set_1.jpg"
+                        alt="">
+                    <div class="cart-icon">
+                        <i class="fa fa-shopping-cart"></i>
+                    </div>
+                </div>
+                <div class="textb">
+
+                    <p>
+                        You Are Enough Personalised Bamboo Made Gift Set
+                    </p>
+                    <div class="pricesection">
+                        <h3>
+                            $&nbsp;4.50
+
+                        </h3>
+                        <div class="cart-icon">
+                            <i class="fa fa-shopping-cart"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="submenu">
+                <div class="image-container">
+                    <img src="https://www.fnp.com/images/pr/l/v200/assorted-baklava-delicacy-box_1.jpg" alt="">
+
+                    <div class="cart-icon">
+                        <i class="fa fa-shopping-cart"></i>
+                    </div>
+                </div>
+                <div class="textb">
+
+                    <p>
+                        Assorted Baklava Delicacy Box
+                    </p>
+                    <div class="pricesection">
+                        <h3>
+                            $&nbsp;12.20
+
+                        </h3>
+                        <div class="cart-icon">
+                            <i class="fa fa-shopping-cart"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="submenu">
+                <div class="image-container">
+                    <img src="https://www.fnp.com/images/pr/l/v200/omay-foods-variety-snacks-pack_1.jpg" alt="">
+
+                    <div class="cart-icon">
+                        <i class="fa fa-shopping-cart"></i>
+                    </div>
+                </div>
+                <div class="textb">
+
+                    <p>
+                        Omay Food Variety Snacks Packs
+                    </p>
+                    <div class="pricesection">
+                        <h3>
+                            $&nbsp;13.96
+                        </h3>
+                        <div class="cart-icon">
+                            <i class="fa fa-shopping-cart"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="product-container">
+            <div class="submenu">
+                <div class="image-container">
+                    <img src="https://www.fnp.com/images/pr/l/v200/yardley-london-morning-dew-gift-basket_1.jpg" alt="">
+
+                    <div class="cart-icon">
+                        <i class="fa fa-shopping-cart"></i>
+                    </div>
+                </div>
+                <div class="textb">
+
+                    <p>
+                        Yardley London Morning Dew Gift Basket
+                    </p>
+                    <div class="pricesection">
+                        <h3>
+                            $&nbsp;17.20
+
+                        </h3>
+                        <div class="cart-icon">
+                            <i class="fa fa-shopping-cart"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="submenu">
+                <div class="image-container">
+                    <img src="https://www.fnp.com/images/pr/l/v200/miraki-dry-fruits-box_2.jpg" alt="">
+
+                    <div class="cart-icon">
+                        <i class="fa fa-shopping-cart"></i>
+                    </div>
+                </div>
+                <div class="textb">
+
+                    <p>
+                        Miraki Dry Fruits Box
+                    </p>
+                    <div class="pricesection">
+                        <h3>
+                            $&nbsp;7.20
+                        </h3>
+                        <div class="cart-icon">
+                            <i class="fa fa-shopping-cart"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="submenu">
+                <div class="image-container">
+                    <img src="https://www.fnp.com/images/pr/l/v200/tranquil-orchid-and-greenery-gift_1.jpg" alt="">
+
+                    <div class="cart-icon">
+                        <i class="fa fa-shopping-cart"></i>
+                    </div>
+                </div>
+                <div class="textb">
+
+                    <p>
+                        Tranquil Orchid And Greenery Gifts
+                    </p>
+                    <div class="pricesection">
+                        <h3>
+                            $&nbsp;9.80
+
+                        </h3>
+                        <div class="cart-icon">
+                            <i class="fa fa-shopping-cart"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+        <div class="product-container">
+            <div class="submenu" class="zoomin">
+                <div class="image-container">
+                    <img src="https://www.fnp.com/images/pr/l/v200/magical-dust-carnations-n-truffle-cake-combo_1.jpg"
+                        alt="">
+                    <div class="cart-icon">
+                        <i class="fa fa-shopping-cart"></i>
+                    </div>
+                </div>
+
+                <div class="textb">
+
+                    <p>
+                        Time Less Love Red Roses & Chocolate Cake
+                    </p>
+                    <div class="pricesection">
+                        <h3>
+                            $&nbsp;17.77
+                        </h3>
+                        <div class="cart-icon">
+                            <i class="fa fa-shopping-cart"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="submenu">
+                <div class="image-container">
+                    <img src="https://www.fnp.com/images/pr/l/v200/jasmine-whispers-n-chocolate-dreams_1.jpg" alt="">
+
+                    <div class="cart-icon">
+                        <i class="fa fa-shopping-cart"></i>
+                    </div>
+                </div>
+
+                <div class="textb">
+
+                    <p>
+                        Jasmine Whispers & Chocolte Dreams
+
+                    <div class="pricesection">
+                        <h3>
+                            $&nbsp;14.20
+
+                        </h3>
+                        <div class="cart-icon">
+                            <i class="fa fa-shopping-cart"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="submenu">
+
+                <div class="image-container">
+                    <img src="https://www.fnp.com/images/pr/l/v200/personalised-mug-with-chocolate-temptations_1.jpg"
+                        alt="">
+
+                    <div class="cart-icon">
+                        <i class="fa fa-shopping-cart"></i>
+                    </div>
+                </div>
+
+                <div class="textb">
+
+                    <p>
+
+                        Personaised Mug With Chocolate Temptation
+
+                    </p>
+
+                    <div class="pricesection">
+                        <h3>
+                            $&nbsp;22.20
+
+                        </h3>
+                        <div class="cart-icon">
+                            <i class="fa fa-shopping-cart"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="submenu">
+                <div class="image-container">
+                    <img src="https://www.fnp.com/images/pr/l/v200/just-herbs-beauty-gift-box_1.jpg" alt="">
+
+
+                    <div class="cart-icon">
+                        <i class="fa fa-shopping-cart"></i>
+                    </div>
+                </div>
+
+                <div class="textb">
+
+                    <p>
+                        Just Herbs Beauty Gift Box
+                    </p>
+                    <div class="pricesection">
+
+                        <h3>
+                            $&nbsp;12.40
+
+                        </h3>
+                        <div class="cart-icon">
+                            <i class="fa fa-shopping-cart"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+<!-- 
+    <footer class="main-footer">
+
+        <div class="logo footer-logo">
+            <a href="#">VNORGANICS</a>
+        </div>
+        <ul class="nav-links footer-nav-links">
+            <li><a href="#">CONTACT US</a></li>
+            <li><a href="#">BLOG</a></li>
+        </ul>
+        <div class="copyright">
+            <a href="https://www.instagram.com/vishvambar_18?igsh=MWN6eHJtMmF0MHg3aQ==" target="_blank">
+                <p>&copy;&nbsp;vishvambar_18</p>
+            </a>
+        </div>
+
+    </footer> -->
+    <script src="search.js"></script>
+
+    <script>
+        function openProductPage(event) {
+            const productDiv = event.target.closest('.submenu');
+
+            // Extract product details
+            const image = productDiv.querySelector('img').src;
+            const name = productDiv.querySelector('p').textContent.trim();
+            const price = productDiv.querySelector('h3').textContent.trim();
+
+            // Prepare product object
+            const product = { image, name, price };
+
+            // Save product data to localStorage
+            localStorage.setItem('selectedforproductpage', JSON.stringify(product));
+
+            // Redirect to the product page
+            window.location.href = 'product-page.html';
+        }
+
+        document.querySelectorAll('.image-container').forEach(product => {
+            product.addEventListener('click', openProductPage);
+        });
+
+        function addToCart(event) {
+            const productDiv = event.target.closest('.submenu');
+
+            // Extract product details ```javascript
+            const image = productDiv.querySelector('img').src;
+            const name = productDiv.querySelector('p').textContent.trim();
+            const price = productDiv.querySelector('h3').textContent.trim();
+
+            // Prepare product object
+            const product = { image, name, price };
+
+            // Get existing cart items from localStorage
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+            // Add new product to cart
+            cart.push(product);
+
+            // Save updated cart back to localStorage
+            localStorage.setItem('cart', JSON.stringify(cart));
+
+
+            cartAnimation.classList.add('show', 'bounce');
+
+            // Hide animation after 2 seconds
+            setTimeout(() => {
+                cartAnimation.classList.remove('show', 'bounce');
+            }, 2000);
+        }
+
+        document.querySelectorAll('.cart-icon').forEach(icon => {
+            icon.addEventListener('click', addToCart);
+        });
+    </script>
+
+</body>
+
+</html>

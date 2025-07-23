@@ -1,0 +1,261 @@
+/* styles.css */
+
+/* Global Styles */
+body {
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f7f9fc;
+  color: #333;
+}
+
+nav {
+  background-color: #333;
+  padding: 15px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  height: 5vh;
+  position: relative;
+  /* Changed from sticky or fixed to relative */
+  top: auto;
+  /* No need to set top position if using relative */
+  z-index: auto;
+  /* Ensure z-index is not affecting layout */
+}
+ /* Back arrow container */
+ .back-arrow {
+  display: inline-block;
+  padding: 10px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: transform 0.3s ease;
+}
+
+/* Styling the SVG to make it modern and sleek */
+.back-arrow svg {
+  width: 40px;
+  height: 40px;
+  fill: #512e18; /* Dark color for modern look */
+  transition: fill 0.3s ease;
+}
+
+/* Hover effects to change the look */
+.back-arrow:hover {
+  transform: translateX(-5px); /* Slight movement on hover */
+}
+
+.back-arrow:hover svg {
+  fill: #007bff; /* Blue color on hover */
+}
+.cart-wrapper {
+  display: flex;
+  align-items: center;
+  color: white;
+  background-color: #45a049;
+  padding: 7px;
+  outline: none;
+  text-decoration: none;
+  border-radius: 10px;
+}
+
+.cart-wrapper:hover {
+  transform: scale(1.04);
+  cursor: pointer;
+}
+
+.cart-wrapper svg {
+  margin-right: 10px;
+}
+
+.main-footer {
+  background-color: #333;
+  /* padding: 15px 20px; */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  position: relative;
+  /* Changed from sticky or fixed to relative */
+  top: auto;
+  height: 4vh;
+  /* No need to set top position if using relative */
+  z-index: auto;
+  /* Ensure z-index is not affecting layout */
+}
+
+.copyright a {
+  text-decoration: none;
+  color: white;
+}
+
+.logo a {
+  color: #FFA726;
+  font-size: 24px;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+}
+
+.nav-links li {
+  margin: 0 15px;
+}
+
+.nav-links li a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 16px;
+  padding: 8px 12px;
+  transition: background-color 0.3s ease;
+}
+
+.nav-links li a:hover {
+  background-color: #f5e9d3;
+  color: #1F2020;
+  border-radius: 5px;
+}
+
+/* Icon styling */
+.icons {
+  display: flex;
+  align-items: center;
+}
+
+.icons a {
+  margin-left: 15px;
+  transition: transform 0.3s ease;
+  height: 5vh;
+}
+
+.icons a:hover {
+  transform: scale(1.2);
+}
+
+.upper h1{
+  text-align: center;
+  font-size: 1.5rem;
+
+}
+.upper p{
+   text-align: center;
+   font-size: 0.9rem;
+}
+.main{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  }
+.lower{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50px;
+}
+.lower h1{
+  text-align: center;
+  font-size: 1.5rem;
+
+}
+.mid {
+  margin-top: 20px;
+}
+.mid img{
+background-size:cover;
+  height: 350px;
+ 
+}
+
+.lower p{
+ 
+      text-align: center;
+      font-size: 0.9rem;
+ 
+}
+.lower img{
+   border-radius: 20px;
+}
+/* Footer */
+footer {
+  background-color: #333;
+  color: #fff;
+  padding: 20px 0;
+  text-align: center;
+}
+
+footer ul {
+  list-style: none;
+  padding: 0;
+}
+
+footer ul li {
+  display: inline;
+  margin: 0 10px;
+}
+
+footer ul li a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 14px;
+  transition: color 0.3s ease;
+}
+
+footer ul li a:hover {
+  color: #ddd;
+}
+
+/* Info Section */
+.info-section {
+text-align: center;
+}
+
+.info-section h2 {
+font-size: 1.8rem;
+margin-bottom: 40px;
+}
+
+.info-grid {
+display: flex;
+justify-content: space-between;
+max-width: 1000px;
+margin: 0 auto;
+gap: 20px;
+}
+
+.info-card {
+background-color: #fff;
+padding: 20px;
+border-radius: 8px;
+box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+transition: box-shadow 0.3s ease;
+width: 30%;
+text-align: left;
+}
+
+.info-card img {
+width: 100%;
+border-radius: 8px;
+margin-bottom: 20px;
+}
+
+.info-card h3 {
+font-size: 22px;
+margin-bottom: 10px;
+color: #333;
+}
+
+.info-card p {
+font-size: 16px;
+color: #666;
+}
+
+.info-card:hover {
+box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}

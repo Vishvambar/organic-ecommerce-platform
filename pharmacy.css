@@ -1,0 +1,304 @@
+/* General Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: white;
+    color: white;
+}
+
+h1,
+h2,
+h3 {
+    color: #4CAF50;
+}
+
+header,
+section,
+footer {
+    padding: 20px;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+nav {
+    background-color: #333;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    height: 5vh;
+    position: relative;
+    /* Changed from sticky or fixed to relative */
+    top: auto;
+    /* No need to set top position if using relative */
+    z-index: auto;
+    /* Ensure z-index is not affecting layout */
+}
+
+.cart-wrapper {
+    display: flex;
+    align-items: center;
+    color: white;
+    background-color: #45a049;
+    padding: 7px;
+    outline: none;
+    text-decoration: none;
+    border-radius: 10px;
+}
+
+.cart-wrapper:hover {
+    transform: scale(1.04);
+    cursor: pointer;
+}
+
+.cart-wrapper svg {
+    margin-right: 10px;
+}
+
+.main-footer {
+    background-color: #333;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    position: relative;
+    /* Changed from sticky or fixed to relative */
+    top: auto;
+    height: 4vh;
+    /* No need to set top position if using relative */
+    z-index: auto;
+    /* Ensure z-index is not affecting layout */
+}
+
+.copyright a {
+    text-decoration: none;
+    color: white;
+}
+
+.logo a {
+    color: #FFA726;
+    font-size: 24px;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+}
+
+.nav-links li {
+    margin: 0 15px;
+}
+
+.nav-links li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 16px;
+    padding: 8px 12px;
+    transition: background-color 0.3s ease;
+}
+
+.nav-links li a:hover {
+    background-color: #f5e9d3;
+    color: #1F2020;
+    border-radius: 5px;
+}
+
+/* Icon styling */
+.icons {
+    display: flex;
+    align-items: center;
+}
+
+.icons a {
+    margin-left: 15px;
+    transition: transform 0.3s ease;
+}
+
+.icons a:hover {
+    transform: scale(1.2);
+}
+
+/* Header Styles
+.pharmacy-header {
+    background: linear-gradient(90deg, #8BC34A, #4CAF50);
+    text-align: center;
+    padding: 30px 0;
+}
+
+.pharmacy-header h1 {
+    font-size: 2.5rem;
+    margin: 0;
+}
+
+.pharmacy-header p {
+    font-size: 1.2rem;
+    color: #fff;
+}
+
+.pharmacy-header nav ul {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.pharmacy-header nav ul li a:hover {
+    text-decoration: underline;
+} */
+
+/* Search Bar */
+.search-bar {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.search-bar input {
+    padding: 10px;
+    width: 70%;
+    border: none;
+    border-radius: 30px;
+}
+
+.search-bar button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 30px;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.search-bar button:hover {
+    background-color: #388E3C;
+}
+
+/* Category Section */
+.category-section {
+    display: flex;
+    justify-content: space-around;
+    padding: 20px;
+}
+
+.category-card {
+    background-color: #2C2C2C;
+    text-align: center;
+    /* padding: 15px; */
+    border-radius: 10px;
+    display: flex;
+    width: 140px;
+    height: 180px;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    transition: transform 0.3s;
+    /* border: 2px solid red; */
+}
+
+.category-card img {
+    height: 100%;
+    border-radius: 10px 10px 0px 0px;
+    width: 100%;
+    /* border: 2px solid green; */
+    object-fit: cover;
+}
+
+.category-card:hover {
+    transform: scale(1.05);
+}
+
+
+
+.category-card p {
+    margin-top: 10px;
+    color: #fff;
+}
+
+/* Featured Products */
+.featured-products {
+    text-align: center;
+}
+
+.product-grid {
+    display: flex;
+    justify-content: space-around;
+    padding: 20px;
+}
+
+.product-card {
+    background-color: #333;
+    padding: 15px;
+    border-radius: 10px;
+    text-align: center;
+    transition: transform 0.3s;
+}
+
+.product-card:hover {
+    transform: scale(1.05);
+}
+
+.product-card img {
+    width: 100px;
+}
+
+.product-card button {
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+}
+
+/* Health Tips */
+.health-tips {
+    text-align: center;
+}
+
+.tips-grid {
+    display: flex;
+    justify-content: space-around;
+    padding: 20px;
+}
+
+.tip-card {
+    background-color: #2C2C2C;
+    padding: 15px;
+    border-radius: 10px;
+    width: 30%;
+}
+
+.tip-card p {
+    color: #fff;
+}
+
+/* Footer */
+.pharmacy-footer {
+    text-align: center;
+    background-color: #333;
+    padding: 20px;
+}
+
+.social-icons a {
+    margin: 0 10px;
+    color: #fff;
+}
+
+.social-icons a:hover {
+    text-decoration: underline;
+}

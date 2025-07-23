@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet"> -->
+
+    <link rel="stylesheet" href="fruits.css">
+
+
+</head>
+<style>
+    .cart-icon {
+        cursor: pointer;
+    }
+
+    .new-cart-logo {
+        background-image: url('new-cart-logo.png');
+        background-size: cover;
+        width: 40px;
+        height: 40px;
+    }
+
+    .profile-logo {
+        background-image: url('user_12515988.png');
+        background-size: cover;
+        width: 40px;
+        height: 40px;
+    }
+
+    .searchbar {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: transparent;
+        padding: 10px 20px;
+        gap: 10px;
+
+        caret-color: black;
+    }
+
+    .search-input {
+        flex: 1;
+        padding: 10px 15px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+
+        font-size: 16px;
+        caret-color: black;
+        transition: border-color 0.3s ease;
+    }
+
+    .search-input:focus {
+        outline: none;
+    }
+
+    .search-btn {
+        padding: 10px 10px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 41px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    .search-btn:hover {
+        background-color: #0056b3;
+    }
+
+    #searchResults {
+        display: flex;
+        flex-wrap: wrap;
+        background: white;
+        gap: 10px;
+        width: 100%;
+        max-height: 400px;
+        overflow-y: auto;
+        scrollbar-width: none;
+        /* For Firefox */
+    }
+
+    #searchResults::-webkit-scrollbar {
+        display: none;
+        /* For Chrome, Safari, Opera */
+    }
+
+    #searchBar {
+        width: 60%;
+        padding: 10px;
+        font-size: 16px;
+    }
+
+    .submenu-search {
+        width: 100%;
+        height: 130px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        color: black;
+        flex-direction: row-reverse;
+        border-radius: 15px;
+        background: #f9f9f9;
+        padding: 10px;
+    }
+
+    .submenu-search img {
+        height: 70%;
+        width: 30%;
+        object-fit: cover;
+        border-radius: 15px;
+        margin: 20px;
+    }
+
+    .submenu-search p {
+        margin: 35px;
+        flex: 1;
+        font-size: 18px;
+    }
+</style>
+
+<body>
+    <div id="cartAnimation" class="cart-animation">Item added to cart!</div>
+
+    <nav>
+        <div class="logo">
+            <a href="#" style="color:aliceblue;">URBAN ORGANICS</a>
+        </div>
+        <ul class="nav-links">
+            <li><a href="home.html">HOME</a></li>
+            <li><a href="knowmore.html">KNOWMORE</a></li>
+            <li><a href="contact.html">CONTACT US</a></li>
+
+        </ul>
+
+        <!-- <div class="search-bar">
+            <input type="text" id="searchBar" placeholder="Search for organic products">
+            <button class="search-btn">Search</button>
+        </div>
+         -->
+
+        <div class="icons">
+
+            <a href="new_cart.html">
+                <div class="new-cart-logo">
+
+                </div>
+            </a>
+            <a href="profile-info.html">
+                <div class="profile-logo">
+
+                </div>
+            </a>
+        </div>
+
+    </nav>
+
+
+    <div style="margin-top: 3%;" id="searchResults"></div>
+
+    </div>
+
+    <div class="okk">
+        <div class="product-container">
+            <div class="submenu">
+                <div class="image-container">
+                    <img class="image-container"
+                        src="https://t3.ftcdn.net/jpg/09/97/73/98/360_F_997739847_B1EnmTbCVygK6P35SWUWVTiklJ5jgaUv.jpg"
+                        alt="Product Image">
+                    <div class="cart-icon">
+                        <img src="shopping-bag_6467105.png" height="40px" width="42px">
+                    </div>
+                </div>
+                <div class="add-to-cart">Add To Cart</div>
+                <div class="textb">
+                    <p>Assorted Fresh Fruits Basket</p>
+                    <div class="pricesection">
+                        <h3>$ 10.90</h3>
+                        <div class="cart-icon">
+                            <i class="fa fa-shopping-cart"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="submenu">
+
+                <div class="image-container">
+                    <img src="https://static.vecteezy.com/system/resources/previews/041/768/786/non_2x/ai-generated-basket-filled-with-red-apples-free-photo.jpeg "
+                        alt="">
+                    <div class="cart-icon">
+
+                        <i class="fa fa-shopping-cart"></i>
+                    </div>
+                </div>
+                <div class="add-to-cart">Add To Cart</div>
+                <div class="textb">
+
+                    <p>
+                        Juicy, sweet Apples perfect for a healthy diet
+                    <div class="pricesection">
+
+                        <h3>
+                            $&nbsp;6.77
+
+                        </h3>
+                        <div class="cart-icon">
+                            <i class="fa fa-shopping-cart"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="submenu">
+                <div class="image-container">
+
+                    <img src="https://cdn.pixabay.com/photo/2024/02/26/03/25/papaya-8597048_1280.jpg" alt="">
+                    <div class="add-to-cart">Add To Cart</div>
+                </div>
+                <div class="textb">
+
+                    <p>
+
+                        Tropical papaya with a sweet flavor and soft texture
+
+                    </p>
+                    <div class="pricesection">
+
+                        <h3>
+                            $&nbsp;12.77
+
+                        </h3>
+                        <div class="cart-icon   ">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="submenu">
+                <div class="image-container">
+
+                    <img src="https://www.shutterstock.com/image-photo/fruit-ellipsoid-berry-manilkara-zapota-600nw-1772959055.jpg"
+                        alt="">
+                    <div class="add-to-cart">Add To Cart</div>
+                </div>
+                <div class="textb">
+
+                    <p>
+                        Sweet, aromatic chiku with a smooth, creamy texture
+                    </p>
+                    <div class="pricesection">
+
+                        <h3>
+                            $&nbsp;8.90
+
+                        </h3>
+                        <div class="cart-icon bag ">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="product-container">
+            <div class="submenu">
+                <div class="image-container">
+
+                    <img src="https://media.istockphoto.com/id/1494763483/photo/banana-concept.jpg?s=612x612&w=0&k=20&c=ZeVP-L6ClmyT-i0N-QAbDK7q37uHhrzg7KOzMkaOtg4="
+                        alt="">
+                    <div class="add-to-cart">Add To Cart</div>
+                </div>
+                <div class="textb">
+
+                    <p>
+                        Soft, sweet bananas, a perfect on-the-go snack
+                    </p>
+                    <div class="pricesection">
+
+                        <h3>
+                            $&nbsp;9.07
+
+                        </h3>
+                        <div class="cart-icon">
+                            <i class="fa fa-shopping-cart"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="submenu">
+                <div class="image-container">
+
+                    <img src="https://media.istockphoto.com/id/1224636159/photo/closeup-of-a-red-guava-cut-in-half-in-the-background-several-guavas-and-green-leaf.jpg?s=612x612&w=0&k=20&c=KJ9YilkRRuFh0bnw64Ol0IZDfoQF7UIxyC6dRVIjaoA="
+                        alt="">
+                    <div class="add-to-cart">Add To Cart</div>
+                </div>
+                <div class="textb">
+
+                    <p>
+                        Juicy, sweet guavas rich in vitamin C and fiber.
+                    </p>
+                    <div class="pricesection">
+
+                        <h3>
+                            $&nbsp;12.90
+
+                        </h3>
+                        <div class="cart-icon">
+                            <i class="fa fa-shopping-cart"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="submenu">
+                <div class="image-container">
+
+                    <img src="https://images7.alphacoders.com/425/425419.jpg" alt="">
+                    <div class="add-to-cart">Add To Cart</div>
+                </div>
+                <div class="textb">
+
+                    <p>
+                        Succulent red pears with a sweet, juicy flavor
+                    </p>
+                    <div class="pricesection">
+
+                        <h3>
+                            $&nbsp;10.00
+
+                        </h3>
+                        <div class="cart-icon">
+                            <i class="fa fa-shopping-cart"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="product-container">
+            <div class="submenu">
+                <div class="image-container">
+
+                    <img src="https://images.pexels.com/photos/327098/pexels-photo-327098.jpeg?cs=srgb&dl=pexels-pixabay-327098.jpg&fm=jpg"
+                        alt="">
+                    <div class="add-to-cart">Add To Cart</div>
+                </div>
+                <div class="textb">
+
+                    <p>
+                        Citrusy oranges bursting with flavor and vitamin C
+                    </p>
+                    <div class="pricesection">
+
+                        <h3>
+                            $&nbsp;3.90
+
+                        </h3>
+                        <div class="cart-icon">
+                            <i class="fa fa-shopping-cart"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="submenu">
+                <div class="image-container">
+
+                    <img src="https://t3.ftcdn.net/jpg/10/17/28/70/360_F_1017287082_MOvapQjCGz7WvIEe8lfymDo2SKPREitI.jpg"
+                        alt="">
+                    <div class="add-to-cart">Add To Cart</div>
+                </div>
+                <div class="textb">
+
+                    <p>
+                        Black African Jamuns
+                    </p>
+                    <div class="pricesection">
+
+                        <h3>
+                            $&nbsp;6.50
+
+                        </h3>
+                        <div class="cart-icon">
+                            <i class="fa fa-shopping-cart"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="submenu">
+                <div class="image-container">
+
+                    <img src="https://img.freepik.com/premium-photo/fresh-watermelon-hd-8k-wallpaper-stock-photographic_853645-62947.jpg"
+                        alt="">
+                    <div class="add-to-cart">Add To Cart</div>
+                </div>
+                <div class="textb">
+
+                    <p>
+                        Refreshing watermelon, juicy and perfect for summer
+                    </p>
+                    <div class="pricesection">
+
+                        <h3>
+                            $&nbsp;8.40
+
+                        </h3>
+                        <div class="cart-icon">
+                            <i class="fa fa-shopping-cart"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="submenu">
+                <div class="image-container">
+
+                    <img src="https://t3.ftcdn.net/jpg/11/73/16/80/360_F_1173168001_n7igy80iH8NgvybcGPvQRvyynaUIaPGu.jpg"
+                        alt="">
+                    <div class="add-to-cart">Add To Cart</div>
+                </div>
+                <div class="textb">
+
+                    <p>
+                        Sweet mosambi, a citrus delight rich in juice
+
+                    </p>
+                    <div class="pricesection">
+
+                        <h3>
+                            $&nbsp;2.60
+
+                        </h3>
+                        <div class="cart-icon">
+                            <i class="fa fa-shopping-cart"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="product-container">
+            <div class="submenu">
+                <div class="image-container">
+
+                    <img src="https://wallpapers.com/images/featured/grapes-6l40hfchhnr2hofp.jpg" alt="">
+                    <div class="add-to-cart">Add To Cart</div>
+                </div>
+                <div class="textb">
+
+                    <p>
+                        Succulent grapes, sweet and perfect for snacking. </p>
+                    </p>
+                    <div class="pricesection">
+
+                        <h3>
+                            $&nbsp;2.60
+
+                        </h3>
+                        <div class="cart-icon">
+                            <i class="fa fa-shopping-cart"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="submenu">
+                <div class="image-container">
+
+                    <img src="https://t4.ftcdn.net/jpg/08/56/30/37/360_F_856303787_7loRiC0LFQJwzYNJTaEBs1nzEGU4EJ3T.jpg"
+                        alt="">
+                    <div class="add-to-cart">Add To Cart</div>
+                </div>
+                <div class="textb">
+
+                    <p>
+                        Sweet muskmelon, juicy and refreshing for any occasion.
+                    </p>
+                    <div class="pricesection">
+
+                        <h3>
+                            $&nbsp;6.90
+
+                        </h3>
+                        <div class="cart-icon">
+                            <i class="fa fa-shopping-cart"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="submenu">
+                <div class="image-container">
+
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSv6oA2UmZfy3o7im0JidTNpvavZXOWBJdXQw&s"
+                        alt="">
+                    <div class="add-to-cart">Add To Cart</div>
+                </div>
+                <div class="textb">
+
+                    <p>
+                        Exquisite Avacado, stunning blooms that elevate any space.
+                    </p>
+                    <div class="pricesection">
+
+                        <h3>
+                            $&nbsp;7.77
+
+                        </h3>
+                        <div class="cart-icon">
+                            <i class="fa fa-shopping-cart"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="product-container">
+
+            <div class="submenu">
+                <div class="image-container">
+
+                    <img src="https://c4.wallpaperflare.com/wallpaper/634/544/1017/fruits-pomegranate-fruit-wallpaper-preview.jpg"
+                        alt="">
+                    <div class="add-to-cart">Add To Cart</div>
+                </div>
+                <div class="textb">
+
+                    <p>
+                        Vibrant pomegranates, bursting with juicy seeds and flavor
+
+                    </p>
+                    <div class="pricesection">
+
+                        <h3>
+                            $&nbsp;1.34
+
+                        </h3>
+                        <div class="cart-icon">
+                            <i class="fa fa-shopping-cart"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="submenu">
+                <div class="image-container">
+
+                    <img src="https://media.istockphoto.com/id/503603245/photo/white-dragon-fruit.jpg?s=612x612&w=0&k=20&c=xwnU0d4gDNMEkMURWi-Eef9dWjOPYbV_8-kLOu1ONt4="
+                        alt="">
+                    <div class="add-to-cart">Add To Cart</div>
+                </div>
+                <div class="textb">
+
+                    <p>
+                        Exotic dragon fruit, vibrant and rich in nutrients.
+
+                    </p>
+                    <div class="pricesection">
+
+                        <h3>
+                            $&nbsp;4.30
+
+                        </h3>
+                        <div class="cart-icon">
+                            <i class="fa fa-shopping-cart"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="submenu">
+                <div class="image-container">
+
+                    <img src="https://w0.peakpx.com/wallpaper/241/637/HD-wallpaper-pineapples-fruit-spikey-food-pineapple.jpg"
+                        alt="">
+                    <div class="add-to-cart">Add To Cart</div>
+                </div>
+                <div class="textb">
+
+                    <p>
+                        Tropical pineapple, sweet and tangy with a juicy crunch.
+                    </p>
+                    <div class="pricesection">
+
+                        <h3>
+                            $&nbsp;2.12
+
+                        </h3>
+                        <div class="cart-icon">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="submenu">
+                <div class="image-container">
+
+                    <img src="https://watermark.lovepik.com/photo/20211209/large/lovepik-red-strawberry-fresh-fruit-picture_501703118.jpg"
+                        alt="">
+                    <div class="add-to-cart">Add To Cart</div>
+                </div>
+                <div class="textb">
+
+                    <p>
+                        Nutritious raw papaya, versatile for salads and cooking
+                    </p>
+                    <div class="pricesection">
+
+                        <h3>
+                            $&nbsp;4.23
+
+                        </h3>
+                        <div class="cart-icon">
+                            <i class="fa fa-shopping-cart"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="submenu" style="padding-left: 10px;">
+            <div class="image-container">
+
+                <img src="data:image/jpeg;base64,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"
+                    alt="">
+                <div class="add-to-cart">Add To Cart</div>
+            </div>
+            <div class="textb">
+
+                <p>
+                    Pomegranete
+
+                </p>
+                <div class="pricesection">
+
+                    <h3>
+                        $&nbsp;4.30
+
+                    </h3>
+                    <div class="cart-icon">
+                        <i class="fa fa-shopping-cart"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="search.js"></script>
+    <script>
+        function openProductPage(event) {
+            const productDiv = event.target.closest('.submenu');
+
+            // Extract product details
+            const image = productDiv.querySelector('img').src;
+            const name = productDiv.querySelector('p').textContent.trim();
+            const price = productDiv.querySelector('h3').textContent.trim();
+
+            // Prepare product object
+            const product = { image, name, price };
+
+            // Save product data to localStorage
+            localStorage.setItem('selectedforproductpage', JSON.stringify(product));
+
+            // Redirect to the product page
+            window.location.href = 'product-page.html';
+        }
+
+        document.querySelectorAll('.image-container').forEach(product => {
+            product.addEventListener('click', openProductPage);
+        });
+
+        function addToCart(event) {
+            const productDiv = event.target.closest('.submenu');
+
+            // Extract product details ```javascript
+            const image = productDiv.querySelector('img').src;
+            const name = productDiv.querySelector('p').textContent.trim();
+            const price = productDiv.querySelector('h3').textContent.trim();
+
+            // Prepare product object
+            const product = { image, name, price };
+
+            // Get existing cart items from localStorage
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+            // Add new product to cart
+            cart.push(product);
+
+            // Save updated cart back to localStorage
+            localStorage.setItem('cart', JSON.stringify(cart));
+
+            cartAnimation.classList.add('show', 'bounce');
+
+            // Hide animation after 2 seconds
+            setTimeout(() => {
+                cartAnimation.classList.remove('show', 'bounce');
+            }, 2000);
+        }
+
+        document.querySelectorAll('.cart-icon').forEach(icon => {
+            icon.addEventListener('click', addToCart);
+        });
+
+
+
+
+
+    </script>
+</body>
+
+
+</html>

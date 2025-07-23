@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VNORGANICS Pharmacy</title>
+    <link rel="stylesheet" href="pharmacy.css">
+</head>
+
+<body>
+    <!-- Header Section -->
+    <!-- <h1>VNORGANICS Pharmacy</h1>
+        <p>Your Health, Our Priority</p> -->
+    <nav>
+        <div class="logo">
+            <a href="#">VNORGANICS</a>
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html">HOME</a></li>
+            <li><a href="#">SPECIAL OFFERS</a></li>
+            <li><a href="#">GROCERY</a></li>
+            <li><a href="pharmacy.html">PHARMACY</a></li>
+            <li><a href="#">TRENDING</a></li>
+
+        </ul>
+        <div class="icons">
+
+            <a style="height: 4vh;" href="cart-page.html" class="cart-wrapper" target="_blank">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="#FFFFFF"
+                    stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="9" cy="21" r="1"></circle>
+                    <circle cx="20" cy="21" r="1"></circle>
+                    <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                </svg>
+                <p>My Cart</p>
+            </a>
+        </div>
+    </nav>
+
+
+    <!-- Search Bar -->
+    <div class="search-bar">
+        <input type="text" id="search-input" placeholder="Search for medicines, health products…">
+        <button id="search-btn">Search</button>
+    </div>
+
+    <!-- Category Section -->
+    <section class="category-section">
+        <div class="category-card" data-category="Medicines">
+            <div class="img-box">
+                <img src="https://img.freepik.com/premium-photo/picture-medicine-medicine-medicine-medical-supplies_1187944-742.jpg?ga=GA1.1.2018740749.1726916130&semt=ais_hybrid"
+                    alt="Medicines">
+            </div>
+            <p>Medicines</p>
+        </div>
+        <div class="category-card" data-category="Supplements">
+            <div class="img-box">
+                <img src="https://img.freepik.com/free-vector/realistic-vitamin-complex-package_23-2148489863.jpg?ga=GA1.1.2018740749.1726916130&semt=ais_hybrid"
+                    alt="Supplements">
+            </div>
+            <p>Supplements</p>
+        </div>
+        <div class="category-card" data-category="Herbal Remedies">
+            <div class="img-box">
+                <img src="https://img.freepik.com/premium-photo/holistic-natural-remedies-wooden-table-with-herbal-supplements-plantbased-products_269655-44344.jpg?ga=GA1.1.2018740749.1726916130&semt=ais_hybrid"
+                    alt="Herbal Remedies">
+            </div>
+            <p>Herbal Remedies</p>
+        </div>
+        <div class="category-card" data-category="Personal Care">
+            <div class="img-box"><img
+                    src="https://img.freepik.com/premium-photo/cosmetic-products-presentation-mockup-showcase-ai-image_1209683-16055.jpg?ga=GA1.1.2018740749.1726916130&semt=ais_hybrid"
+                    alt="Personal Care"></div>
+            <p>Personal Care</p>
+        </div>
+    </section>
+
+    <!-- Featured Products Section -->
+    <section class="featured-products">
+        <h2>Best Selling Products</h2>
+        <div class="product-grid" id="product-grid">
+            <div class="product-card" data-category="Medicines">
+                <img src="product1.png" alt="Product 1">
+                <h3>Medicine 1</h3>
+                <p>$25.99</p>
+                <button>Add to Cart</button>
+            </div>
+            <div class="product-card" data-category="Supplements">
+                <img src="product2.png" alt="Product 2">
+                <h3>Supplement 1</h3>
+                <p>$15.99</p>
+                <button>Add to Cart</button>
+            </div>
+            <div class="product-card" data-category="Herbal Remedies">
+                <img src="product3.png" alt="Product 3">
+                <h3>Herbal Remedy 1</h3>
+                <p>$35.99</p>
+                <button>Add to Cart</button>
+            </div>
+            <div class="product-card" data-category="Personal Care">
+                <img src="product4.png" alt="Product 4">
+                <h3>Personal Care 1</h3>
+                <p>$18.99</p>
+                <button>Add to Cart</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Health Tips Section -->
+    <section class="health-tips">
+        <h2>Pharmacy Tips for a Healthier You</h2>
+        <div class="tips-grid">
+            <div class="tip-card">
+                <h3>Tip 1</h3>
+                <p>How to use medicines properly...</p>
+            </div>
+            <div class="tip-card">
+                <h3>Tip 2</h3>
+                <p>Benefits of organic supplements...</p>
+            </div>
+            <div class="tip-card">
+                <h3>Tip 3</h3>
+                <p>How to maintain a healthy lifestyle...</p>
+            </div>
+        </div>
+    </section>
+
+    <footer class="main-footer">
+
+        <div class="logo footer-logo">
+            <a href="#">VNORGANICS</a>
+        </div>
+        <ul class="nav-links footer-nav-links">
+            <li><a href="#">CONTACT US</a></li>
+            <li><a href="#">BLOG</a></li>
+        </ul>
+        <div class="copyright" style="margin-right: 53px;">
+            <a href="https://www.instagram.com/vishvambar_18?igsh=MWN6eHJtMmF0MHg3aQ==" target="_blank">
+                <p>&copy;&nbsp;vishvambar_18</p>
+            </a>
+        </div>
+
+    </footer>
+
+    <script src="pharmacy.js"></script>
+</body>
+
+</html>

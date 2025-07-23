@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buy Now</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script> <!-- Include Razorpay Checkout Script -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function () {
+            emailjs.init("4CXzXdrZ_f6F6933V"); // Replace with your EmailJS User ID
+        })();
+    </script>
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-app.js";
+        import { getFirestore, doc, getDoc, updateDoc } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-firestore.js";
+        import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-auth.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyCfQoSWrD3MgszZk7bUKVuOQGrHm8lQNgY",
+            authDomain: "finalyearproject-c903e.firebaseapp.com",
+            projectId: "finalyearproject-c903e",
+            storageBucket: "finalyearproject-c903e.appspot.com",
+            messagingSenderId: "973186077279",
+            appId: "1:973186077279:web:ee54875cad164d43d841ea",
+            measurementId: "G-MQK78X673M"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+        const auth = getAuth(app);
+
+        document.addEventListener('DOMContentLoaded', () => {
+            // Fetch and display user data
+            onAuthStateChanged(auth, async (user) => {
+                if (user) {
+                    const userDocRef = doc(db, "users", user.uid);
+                    try {
+                        const userDoc = await getDoc(userDocRef);
+
+                        if (userDoc.exists()) {
+                            const userData = userDoc.data();
+
+                            // Safely update DOM elements if they exist
+                            const profileName = document.getElementById("profile-name");
+                            const nameText = document.getElementById("name-text");
+                            const emailText = document.getElementById("email-text");
+                            const phoneText = document.getElementById("phone-text");
+                            const addressText = document.getElementById("address-text");
+
+                            if (profileName) profileName.textContent = userData.name || "N/A";
+                            if (nameText) nameText.textContent = userData.name || "N/A";
+                            if (emailText) emailText.textContent = userData.email || "N/A";
+                            if (phoneText) phoneText.textContent = userData.mobileno || "N/A";
+                            if (addressText) addressText.textContent = userData.address || "N/A";
+                        } else {
+                            alert("User data not found.");
+                        }
+                    } catch (error) {
+                        console.error("Error fetching user data:", error);
+                    }
+                } else {
+                    alert("No user is logged in.");
+                    window.location.href = "login.html";
+                }
+            });
+        });
+
+        // Save updated field data to Firestore
+        async function saveField(field) {
+            const inputField = document.getElementById(field + "-input");
+            const textField = document.getElementById(field + "-text");
+            const newValue = inputField.value;
+
+            textField.textContent = newValue;
+            inputField.style.display = "none";
+            textField.style.display = "block";
+
+            const user = auth.currentUser;
+            if (user) {
+                try {
+                    const userDocRef = doc(db, "users", user.uid);
+                    await updateDoc(userDocRef, { [field]: newValue });
+                    alert(`${field} updated successfully!`);
+                } catch (error) {
+                    console.error("Error updating profile:", error);
+                    alert("Error saving changes.");
+                }
+            }
+        }
+
+    </script>
+    <style>
+        /* Your existing CSS styles */
+        :root {
+            --secondary-color: #ffffff;
+            --background-color: #f9f9f9;
+            --text-color: #333;
+            --border-color: #ddd;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            height: 100vh;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            justify-content: space-between;
+            flex-direction: column;
+        }
+
+        header {
+            background-color: white;
+            color: black;
+            padding: 15px 20px;
+            display: flex;
+            width: 100vw;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            font-size: 1.5rem;
+            margin: 0;
+        }
+
+        header a {
+            color: black;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 27px auto;
+            display: flex;
+            gap: 20px;
+        }
+
+        .left-section,
+        .right-section {
+            background: var(--secondary-color);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .left-section {
+            flex: 1.5;
+        }
+
+        .right-section {
+            flex: 1;
+        }
+
+        .product-summary {
+            display: flex;
+            gap: 30px;
+        }
+
+        .product-summary img {
+            width: 300px;
+            max-height: 300px;
+            min-height: 300px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .product-details h2 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: var(--text-color);
+        }
+
+        .product-details p {
+            margin: 5px 0;
+            font-size: 1rem;
+        }
+
+        .checkout-form h3 {
+            margin-bottom: 20px;
+            color: var(--text-color);
+            font-size: 1.2rem;
+        }
+
+        .checkout-form .form-control {
+            border-radius: 5px;
+        }
+
+        .checkout-form .btn-submit {
+            color: var(--secondary-color);
+            font-size: 1rem;
+            padding: 10px 20px;
+            border-radius: 5px;
+            border: none;
+            width: 100%;
+        }
+
+        .btn-submit {
+            background-color: green;
+        }
+
+        .footer {
+            background-color: var(--background-color);
+            text-align: center;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Urban Organics</h1>
+        <a href="new_cart.html">Back to Cart</a>
+    </header>
+
+    <div class="container">
+        <div class="left-section">
+            <div class="product-summary">
+                <img src="" alt="Product Image" id="product-image">
+                <div class="product-details">
+                    <h2 id="product-name">Product Name</h2>
+                    <p>Price: <span id="product-price">$0.00</span></p>
+                    <p>Quantity: <span id="product-quantity">1</span></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="right-section">
+            <form class="checkout-form">
+                <h3>Shipping Details</h3>
+                <div class="mb-3">
+                    Full Name: <label for="name" class="form-label">
+                        <p id="name-text"> loading...</p>
+                    </label>
+                </div>
+                <div class="mb-3">
+                    Address: <label for="address" class="form-label">
+                        <p id="address-text"> loading...</p>
+                    </label>
+                </div>
+                <div class="mb-3">
+                    Email: <label for="email" class="form-label">
+                        <p id="email-text">loading...</p>
+                    </label>
+                </div>
+                <div class="mb-3">
+                    Mobile No: <label for="phone" class="form-label">
+                        <p id="phone-text">loading...</p>
+                    </label>
+                </div>
+                <button type="submit" class="btn-submit">Place Order</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="footer">
+        <h3 style="font-size:1rem"></h3>
+    </div>
+
+    <!-- Test EmailJS Button -->
+    <button id="test-email"
+        style="margin: 20px; padding: 10px 20px; background-color: #4CAF50; color: white; border: none; border-radius: 5px; display: none;">
+        Test EmailJS
+    </button>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const name = urlParams.get('name') || "Unknown Product";
+            const priceParam = urlParams.get('price') || "0.00"; // Get price as string
+            const image = urlParams.get('image') || "default-image.jpg";
+            const quantity = urlParams.get('quantity') || "1";
+
+            document.getElementById('product-image').src = image;
+            document.getElementById('product-name').textContent = name;
+            document.getElementById('product-price').textContent = priceParam;
+            document.getElementById('product-quantity').textContent = quantity;
+        });
+
+        // Test EmailJS Button
+        document.getElementById('test-email').addEventListener('click', () => {
+            emailjs.send("service_kcuhw6b", "template_zqt4tbs", {
+                to_name: "Test User",
+                to_email: "test@example.com",
+                product_name: "Test Product",
+                product_price: "10.00",
+                product_quantity: "1",
+                customer_address: "123 Test St",
+                customer_phone: "1234567890",
+                order_date: new Date().toLocaleDateString(),
+            })
+                .then(function (response) {
+                    console.log('Test email sent successfully!', response.status, response.text);
+                    alert('Test email sent successfully!');
+                }, function (error) {
+                    console.error('Failed to send test email:', error);
+                    alert('Failed to send test email. Check console for details.');
+                });
+        });
+
+        document.querySelector('.checkout-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const productName = document.getElementById('product-name').textContent;
+            const productPrice = parseFloat(document.getElementById('product-price').textContent.replace('$', '')) * 100; // Convert to paise
+            const productQuantity = document.getElementById('product-quantity').textContent;
+            const productImage = document.getElementById('product-image').src;
+            const customerName = document.getElementById('name-text').textContent;
+            const customerAddress = document.getElementById('address-text').textContent;
+            const customerEmail = document.getElementById('email-text').textContent;
+            const customerPhone = document.getElementById('phone-text').textContent;
+
+            // Razorpay payment options
+            const options = {
+                key: 'rzp_test_eRKLlG1iwA78RM', // Replace with your Razorpay key
+                amount: productPrice, // Amount is in paise
+                currency: 'INR',
+                name: productName,
+                description: 'Purchase of ' + productName,
+                image: productImage,
+                handler: async function (response) {
+                    console.log('Razorpay payment successful!', response); // Debugging
+
+                    // Save order details after successful payment
+                    const order = {
+                        name: productName,
+                        price: productPrice / 100, // Convert back to rupees
+                        quantity: productQuantity,
+                        image: productImage,
+                        customerName: customerName,
+                        customerAddress: customerAddress,
+                        customerEmail: customerEmail,
+                        customerPhone: customerPhone,
+                        date: new Date().toLocaleDateString(),
+                        status: "Pending",
+                    };
+
+                    try {
+                        let orders = JSON.parse(localStorage.getItem('orders')) || [];
+                        orders.push(order);
+                        localStorage.setItem('orders', JSON.stringify(orders));
+
+                        console.log('Order saved successfully!'); // Debugging
+
+                        emailjs.send("service_kcuhw6b", "template_zqt4tbs", {
+                            to_name: customerName, // Customer's name
+                            to_email: customerEmail, // Customer's email
+                            product_name: productName, // Product name
+                            product_price: (productPrice / 100).toFixed(2), // Product price
+                            product_quantity: productQuantity, // Product quantity
+                            order_date: new Date().toLocaleDateString(), // Order date
+                            customer_name: customerName, // Customer's name
+                            customer_email: customerEmail, // Customer's email
+                            customer_phone: customerPhone, // Customer's phone
+                            customer_address: customerAddress, // Customer's address
+                        })
+                            .then(function (response) {
+                                console.log('Email sent successfully!', response.status, response.text);
+                                alert('Email sent successfully!');
+                            }, function (error) {
+                                console.error('Failed to send email:', error);
+                                alert('Failed to send email. Check console for details.');
+                            });
+
+                        alert('Your order has been placed successfully!');
+                        window.location.href = 'orders.html';
+                    } catch (error) {
+                        console.error("Error saving order:", error);
+                        alert("Failed to place order. Please try again.");
+                    }
+                },
+                prefill: {
+                    name: customerName,
+                    email: customerEmail,
+                    contact: customerPhone,
+                },
+                notes: {
+                    address: customerAddress,
+                },
+                theme: {
+                    color: '#F37254',
+                },
+                modal: {
+                    ondismiss: function () {
+                        alert('Payment canceled!.');
+                    }
+                },
+                redirect: true
+            };
+
+            const rzp1 = new Razorpay(options);
+            rzp1.open();
+        });
+    </script>
+    <script src="buy-now.js"></script>
+</body>
+
+</html>
